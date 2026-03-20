@@ -27,34 +27,53 @@
         <?php endif; ?>
 
         <form action="<?php echo site_url('feedback/submit_training'); ?>" method="POST">
-            <div class="form-group">
-                <label><?php echo $hi['prog_name']; ?> / <?php echo $en['prog_name']; ?>:</label>
-                <input type="text" name="prog_name" class="form-control" required style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none;">
+            <!-- Program Context Header (V2 Functionality) -->
+            <div style="background: #f8fafc; padding: 20px; border: 1px dashed #cbd5e1; border-radius: 8px; margin-bottom: 30px;">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="font-weight: 700; color: #1e293b;"><?php echo $hi['prog_name']; ?> / <?php echo $en['prog_name']; ?>:</label>
+                    <input type="text" name="prog_name" class="form-control" readonly value="<?php echo isset($cal) ? $cal->training_name : ''; ?>" style="background: transparent; border: none; border-bottom: 2px solid #10b981; font-weight: 800; font-size: 16px; color: #065f46;">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px;">
+                    <div class="form-group">
+                        <label style="font-size: 12px; color: #64748b;">Program ID</label>
+                        <input type="text" name="program_id" class="form-control" readonly value="<?php echo isset($cal) ? $cal->program_id : ''; ?>" style="background: transparent; border: none; border-bottom: 1px solid #ccc; font-size: 13px;">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 12px; color: #64748b;">From / कब से</label>
+                        <input type="text" name="date_from" id="date_from" class="form-control" readonly value="<?php echo isset($cal) ? $cal->start_date : ''; ?>" style="background: transparent; border: none; border-bottom: 1px solid #ccc; font-size: 13px;">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 12px; color: #64748b;">To / कब तक</label>
+                        <input type="text" name="date_to" id="date_to" class="form-control" readonly value="<?php echo isset($cal) ? $cal->end_date : ''; ?>" style="background: transparent; border: none; border-bottom: 1px solid #ccc; font-size: 13px;">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 12px; color: #64748b;">Duration / अवधि</label>
+                        <input type="text" name="duration" id="duration" class="form-control" readonly value="<?php echo isset($cal) ? $cal->duration : ''; ?>" style="background: transparent; border: none; border-bottom: 1px solid #ccc; font-weight: 700; color: #10b981;">
+                    </div>
+                </div>
             </div>
 
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <div class="form-group" style="flex: 1;">
-                    <label>कब से / From Date:</label>
-                    <input type="date" name="date_from" id="date_from" class="form-control" required style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label>Coordinator / समन्वयक :</label>
+                    <input type="text" name="coordinator" class="form-control" value="<?php echo isset($cal) ? $cal->coordinator : ''; ?>" style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none;">
                 </div>
-                <div class="form-group" style="flex: 1;">
-                    <label>कब तक / To Date:</label>
-                    <input type="date" name="date_to" id="date_to" class="form-control" required style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none;">
-                </div>
-                <div class="form-group" style="flex: 1;">
-                    <label><?php echo $hi['duration']; ?> / <?php echo $en['duration']; ?> (Days):</label>
-                    <input type="text" name="duration" id="duration" class="form-control" readonly style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none; background: #f8f9fa;">
+                <div class="form-group">
+                    <label><?php echo $hi['conducted_by']; ?> / Faculty / संकाय :</label>
+                    <input type="text" name="conducted_by" class="form-control" value="<?php echo isset($cal) ? $cal->conducted_by : ''; ?>" style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none;">
                 </div>
             </div>
 
-            <div class="form-group">
-                <label><?php echo $hi['conducted_by']; ?> / <?php echo $en['conducted_by']; ?>:</label>
-                <input type="text" name="conducted_by" class="form-control" style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none;">
-            </div>
-
-            <div class="form-group">
-                <label><?php echo $hi['organization']; ?> / <?php echo $en['organization']; ?>:</label>
-                <input type="text" name="organization" class="form-control" style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label><?php echo $hi['organization']; ?> / <?php echo $en['organization']; ?> :</label>
+                    <input type="text" name="organization" class="form-control" value="<?php echo isset($cal) ? $cal->organization : ''; ?>" style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none;">
+                </div>
+                <div class="form-group">
+                    <label>Location & Room / स्थान और कमरा :</label>
+                    <input type="text" name="location_room" class="form-control" value="<?php echo isset($cal) ? $cal->location . ' (' . $cal->room_booked . ')' : ''; ?>" style="border-bottom: 2px dotted #ccc; border-top:none; border-left:none; border-right:none;">
+                </div>
             </div>
 
             <h4 style="background: #e9ecef; padding: 10px; margin-top: 30px;">I. <?php echo $hi['overall_prog_rating']; ?> / <?php echo $en['overall_prog_rating']; ?>:</h4>

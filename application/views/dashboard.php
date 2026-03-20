@@ -12,12 +12,25 @@
     <div class="stat-card">
         <div class="stat-label">Hostel Feedback</div>
         <div class="stat-value"><?php echo $hostel_count; ?></div>
-        <div class="stat-trend" style="color: var(--success);">+ Last 30 days</div>
+        <div class="stat-trend" style="color: var(--success); font-weight: 700;">Avg: <?php echo number_format($hostel_avg, 1); ?>/5</div>
     </div>
     <div class="stat-card">
         <div class="stat-label">Training Evaluation</div>
         <div class="stat-value"><?php echo $training_count; ?></div>
-        <div class="stat-trend" style="color: var(--accent);">Active growth</div>
+        <div class="stat-trend" style="color: var(--accent); font-weight: 700;">Avg: <?php echo number_format($train_total_avg, 1); ?>/100</div>
+    </div>
+</div>
+
+<div class="stats-grid" style="margin-top: 20px;">
+    <div class="stat-card">
+        <div class="stat-label">Programme Quality</div>
+        <div class="stat-value" style="font-size: 24px; color: var(--accent);"><?php echo number_format($prog_avg, 1); ?>/70</div>
+        <div class="stat-trend">Rating of Overall Prog.</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-label">Faculty Excellence</div>
+        <div class="stat-value" style="font-size: 24px; color: var(--secondary);"><?php echo number_format($fac_avg, 1); ?>/30</div>
+        <div class="stat-trend">Rating of Trainer</div>
     </div>
 </div>
 

@@ -37,18 +37,45 @@
         <?php endif; ?>
 
         <form action="<?php echo site_url('feedback/submit_hostel'); ?>" method="POST">
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <div class="form-group" style="flex: 1; min-width: 250px;">
+            <!-- Program Context Header (V2 Functionality) -->
+            <div style="background: #f8fafc; padding: 20px; border: 1px dashed #cbd5e1; border-radius: 8px; margin-bottom: 30px;">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="font-weight: 700; color: #1e293b;">प्रशिक्षण कार्यक्रम् / Training Program:</label>
+                    <input type="text" name="training_program" class="form-control" readonly value="<?php echo isset($cal) ? $cal->training_name : ''; ?>" style="background: transparent; border: none; border-bottom: 2px solid #3b82f6; font-weight: 800; font-size: 16px; color: #1e3a8a;">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
+                    <div class="form-group">
+                        <label style="font-size: 12px; color: #64748b;">Program ID</label>
+                        <input type="text" name="program_id" class="form-control" readonly value="<?php echo isset($cal) ? $cal->program_id : ''; ?>" style="background: transparent; border: none; border-bottom: 1px solid #ccc; font-size: 13px;">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 12px; color: #64748b;">From Date</label>
+                        <input type="text" class="form-control" readonly value="<?php echo isset($cal) ? date('d M Y', strtotime($cal->start_date)) : ''; ?>" style="background: transparent; border: none; border-bottom: 1px solid #ccc; font-size: 13px;">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 12px; color: #64748b;">To Date</label>
+                        <input type="text" class="form-control" readonly value="<?php echo isset($cal) ? date('d M Y', strtotime($cal->end_date)) : ''; ?>" style="background: transparent; border: none; border-bottom: 1px solid #ccc; font-size: 13px;">
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size: 12px; color: #64748b;">Duration</label>
+                        <input type="text" name="duration" class="form-control" readonly value="<?php echo isset($cal) ? $cal->duration . ' Days' : ''; ?>" style="background: transparent; border: none; border-bottom: 1px solid #ccc; font-weight: 700; color: #3b82f6;">
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div class="form-group">
                     <label>नाम / <?php echo $en['name']; ?>:</label>
-                    <input type="text" name="name" class="form-control" required>
+                    <input type="text" name="name" class="form-control" required placeholder="Enter name...">
                 </div>
-                <div class="form-group" style="flex: 1; min-width: 250px;">
+                <div class="form-group">
                     <label>पदनाम / <?php echo $en['designation']; ?>:</label>
-                    <input type="text" name="designation" class="form-control" required>
+                    <input type="text" name="designation" class="form-control" required placeholder="Enter designation...">
                 </div>
-                <div class="form-group" style="flex: 1; min-width: 250px;">
+                <div class="form-group">
                     <label>पहचान सं. / <?php echo $en['id_no']; ?>:</label>
-                    <input type="text" name="id_no" class="form-control">
+                    <input type="text" name="id_no" class="form-control" placeholder="Enter ID...">
                 </div>
             </div>
 
