@@ -9,7 +9,7 @@
             <div class="form-group">
                 <label>Program Name</label>
                 <select name="program_name" class="form-control select2-v1" style="width: 100%;">
-                    <option value="">All Programs</option>
+                    <option value="">All</option>
                     <?php if(!empty($available_programs)): ?>
                         <?php foreach($available_programs as $prog): ?>
                             <option value="<?php echo htmlspecialchars($prog); ?>" <?php echo (isset($filters['program_name']) && $filters['program_name'] == $prog) ? 'selected' : ''; ?>><?php echo htmlspecialchars($prog); ?></option>
@@ -81,7 +81,7 @@
                             <td><?php echo date('d M Y', strtotime($row->date)); ?></td>
                             <td style="font-weight: 600; color: var(--accent);"><?php echo $row->training_program; ?></td>
                             <td><?php echo $row->name; ?> (<?php echo $row->id_no; ?>)</td>
-                            <td style="font-weight: 700; color: var(--success);"><?php echo number_format($avg, 1); ?>/5</td>
+                            <td><a href="<?php echo site_url('feedback/view_hostel/'.$row->id); ?>" style="text-decoration: none; color: inherit;"><span style="color: <?php echo ($avg >= 4) ? '#28a745' : '#dc3545'; ?>; font-weight: bold;"><?php echo number_format($avg, 1); ?>/5</span></a></td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -100,15 +100,19 @@
                     <th>Program Details</th>
                     <th>Instructor/Faculty</th>
                     <th>Participant</th>
-                    <th>Total Score</th>
+                    <th>Prog. (70)</th>
+                    <th>Faculty (30)</th>
+                    <th>Total (100)</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if(empty($recent_training)): ?>
-                    <tr><td colspan="5" style="text-align: center; padding: 20px;">No records found</td></tr>
+                    <tr><td colspan="7" style="text-align: center; padding: 20px;">No records found</td></tr>
                 <?php else: ?>
                     <?php foreach($recent_training as $row): 
-                        $total = $row->t_q1 + $row->t_q2 + $row->t_q3 + $row->t_q4 + $row->t_q5 + $row->f_q1 + $row->f_q2 + $row->f_q3;
+                        $p_score = $row->t_q1 + $row->t_q2 + $row->t_q3 + $row->t_q4 + $row->t_q5;
+                        $f_score = $row->f_q1 + $row->f_q2 + $row->f_q3;
+                        $total = $p_score + $f_score;
                     ?>
                         <tr>
                             <td><?php echo date('d M Y', strtotime($row->date_from)); ?></td>
@@ -118,7 +122,11 @@
                             </td>
                             <td><?php echo $row->conducted_by; ?></td>
                             <td><?php echo $row->participant_name; ?> (<?php echo $row->cpf_no; ?>)</td>
-                            <td style="font-weight: 800; color: var(--accent); font-size: 16px;"><?php echo $total; ?>/100</td>
+                            <td><?php echo $p_score; ?>/70</td>
+                            <td><?php echo $f_score; ?>/30</td>
+                            <td style="font-weight: 800; color: var(--accent); font-size: 16px;">
+                                <a href="<?php echo site_url('feedback/view_training/'.$row->id); ?>" style="text-decoration: none; color: inherit;"><?php echo $total; ?>/100</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -129,9 +137,6 @@
 
 <script>
 $(document).ready(function() {
-    $('.select2-v1').select2({
-        placeholder: "All Programs",
-        allowClear: true
-    });
+    $('.select2-v1').select2();
 });
 </script>

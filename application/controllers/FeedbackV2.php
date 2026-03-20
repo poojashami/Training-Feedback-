@@ -305,4 +305,28 @@ class FeedbackV2 extends CI_Controller
             redirect('feedbackv2/training');
         }
     }
+
+    public function view_hostel($id)
+    {
+        $data['title'] = 'Hostel Feedback Detail';
+        $data['feedback'] = $this->db->get_where('hostel_feedback', ['id' => $id])->row();
+        if (!$data['feedback']) {
+            show_404();
+        }
+        $this->load->view('v2/templates/header', $data);
+        $this->load->view('v2/view_hostel', $data);
+        $this->load->view('v2/templates/footer');
+    }
+
+    public function view_training($id)
+    {
+        $data['title'] = 'Training Evaluation Detail';
+        $data['evaluation'] = $this->db->get_where('training_evaluation', ['id' => $id])->row();
+        if (!$data['evaluation']) {
+            show_404();
+        }
+        $this->load->view('v2/templates/header', $data);
+        $this->load->view('v2/view_training', $data);
+        $this->load->view('v2/templates/footer');
+    }
 }

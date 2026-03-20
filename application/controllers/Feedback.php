@@ -221,4 +221,24 @@ class Feedback extends CI_Controller {
             redirect('feedback/training');
         }
     }
+
+    public function view_hostel($id)
+    {
+        $data['title'] = 'Hostel Feedback Detail';
+        $data['feedback'] = $this->db->get_where('hostel_feedback', ['id' => $id])->row();
+        if (!$data['feedback']) show_404();
+        $this->load->view('templates/header', $data);
+        $this->load->view('view_hostel', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function view_training($id)
+    {
+        $data['title'] = 'Training Evaluation Detail';
+        $data['evaluation'] = $this->db->get_where('training_evaluation', ['id' => $id])->row();
+        if (!$data['evaluation']) show_404();
+        $this->load->view('templates/header', $data);
+        $this->load->view('view_training', $data);
+        $this->load->view('templates/footer');
+    }
 }
