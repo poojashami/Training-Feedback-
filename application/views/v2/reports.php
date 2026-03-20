@@ -39,16 +39,26 @@
     </form>
 </div>
 
-<div class="stats-grid animate-up" style="margin-bottom: 30px;">
-    <div class="stat-card">
-        <div class="stat-label">Hostel Avg Rating</div>
+<div class="stats-grid animate-up" style="margin-bottom: 30px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+    <div class="stat-card" style="border-bottom: 3px solid var(--accent);">
+        <div class="stat-label">Hostel Avg Rating / हॉस्टल रेटिंग</div>
         <div class="stat-value" style="color: var(--accent);"><?php echo number_format($hostel_overall_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/5</span></div>
-        <div class="stat-trend">Based on <?php echo count($recent_hostel); ?> responses</div>
+        <div class="stat-trend">Based on <?php echo count($recent_hostel); ?> entries</div>
     </div>
-    <div class="stat-card" style="border-left: 4px solid var(--success);">
-        <div class="stat-label">Training Avg Score</div>
+    <div class="stat-card" style="border-bottom: 3px solid var(--success);">
+        <div class="stat-label">Overall Training Score / प्रशिक्षण मूल्यांकन</div>
         <div class="stat-value" style="color: var(--success);"><?php echo number_format($training_overall_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/100</span></div>
-        <div class="stat-trend">Based on <?php echo count($recent_training); ?> responses</div>
+        <div class="stat-trend">Based on <?php echo count($recent_training); ?> entries</div>
+    </div>
+    <div class="stat-card" style="border-bottom: 3px solid #6366f1;">
+        <div class="stat-label">Programme Avg / कार्यक्रम रेटिंग</div>
+        <div class="stat-value" style="color: #6366f1; font-size: 28px;"><?php echo number_format($prog_section_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/70</span></div>
+        <div class="stat-trend">Rating of Programme</div>
+    </div>
+    <div class="stat-card" style="border-bottom: 3px solid #ec4899;">
+        <div class="stat-label">Faculty Avg / संकाय रेटिंग</div>
+        <div class="stat-value" style="color: #ec4899; font-size: 28px;"><?php echo number_format($faculty_section_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/30</span></div>
+        <div class="stat-trend">Rating of Trainer</div>
     </div>
 </div>
 

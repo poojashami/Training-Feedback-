@@ -35,10 +35,49 @@ class FeedbackV2 extends CI_Controller
     {
         $data['title'] = 'V2 Statistics Dashboard';
 
-        // Get stats from DB
+        // Get counts from DB
         $data['hostel_count'] = $this->db->count_all('hostel_feedback');
         $data['training_count'] = $this->db->count_all('training_evaluation');
         $data['total_count'] = $data['hostel_count'] + $data['training_count'];
+
+        // --- Overall Hostel Average ---
+        $this->db->select('*')->from('hostel_feedback');
+        $hostels = $this->db->get()->result();
+        $hostel_overall_avg = 0;
+        if (!empty($hostels)) {
+            $sum = 0;
+            foreach ($hostels as $h) {
+                $sum += ($h->q1 + $h->q2 + $h->q3 + $h->q4 + $h->q5 + $h->q6 + $h->q7 + $h->q8 + $h->q9 + $h->q10) / 10;
+            }
+            $hostel_overall_avg = $sum / count($hostels);
+        }
+        $data['hostel_avg'] = $hostel_overall_avg;
+
+        // --- Overall Training Evaluations ---
+        $this->db->select('*')->from('training_evaluation');
+        $trainings = $this->db->get()->result();
+        $train_total_avg = 0;
+        $prog_avg = 0;
+        $fac_avg = 0;
+        if (!empty($trainings)) {
+            $t_sum = 0;
+            $p_sum = 0;
+            $f_sum = 0;
+            foreach ($trainings as $t) {
+                $p = $t->t_q1 + $t->t_q2 + $t->t_q3 + $t->t_q4 + $t->t_q5;
+                $f = $t->f_q1 + $t->f_q2 + $t->f_q3;
+                $t_sum += ($p + $f);
+                $p_sum += $p;
+                $f_sum += $f;
+            }
+            $cnt = count($trainings);
+            $train_total_avg = $t_sum / $cnt;
+            $prog_avg = $p_sum / $cnt;
+            $fac_avg = $f_sum / $cnt;
+        }
+        $data['train_total_avg'] = $train_total_avg;
+        $data['prog_avg'] = $prog_avg;
+        $data['fac_avg'] = $fac_avg;
 
         $this->load->view('v2/templates/header', $data);
         $this->load->view('v2/dashboard', $data);
@@ -171,15 +210,31 @@ class FeedbackV2 extends CI_Controller
 
         // Calculate Training Avg
         $training_total_avg = 0;
+        $prog_section_avg = 0;
+        $faculty_section_avg = 0;
+
         if (!empty($data['recent_training'])) {
             $running_sum = 0;
+            $prog_sum = 0;
+            $faculty_sum = 0;
+
             foreach ($data['recent_training'] as $rt) {
-                $item_total = $rt->t_q1 + $rt->t_q2 + $rt->t_q3 + $rt->t_q4 + $rt->t_q5 + $rt->f_q1 + $rt->f_q2 + $rt->f_q3;
+                $p_total = $rt->t_q1 + $rt->t_q2 + $rt->t_q3 + $rt->t_q4 + $rt->t_q5;
+                $f_total = $rt->f_q1 + $rt->f_q2 + $rt->f_q3;
+                $item_total = $p_total + $f_total;
+
                 $running_sum += $item_total;
+                $prog_sum += $p_total;
+                $faculty_sum += $f_total;
             }
-            $training_total_avg = $running_sum / count($data['recent_training']);
+            $count = count($data['recent_training']);
+            $training_total_avg = $running_sum / $count;
+            $prog_section_avg = $prog_sum / $count;
+            $faculty_section_avg = $faculty_sum / $count;
         }
         $data['training_overall_avg'] = $training_total_avg;
+        $data['prog_section_avg'] = $prog_section_avg;
+        $data['faculty_section_avg'] = $faculty_section_avg;
 
         // Pass filter values back to view
         $data['filters'] = [
