@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title; ?> | GTI Feedback V2</title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/style-v2.css'); ?>">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <style>
+        .select2-container--default .select2-selection--single {
+            background-color: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: var(--primary);
+            font-size: 14px;
+        }
+        .select2-container { width: 100% !important; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -24,11 +42,7 @@
     </nav>
 
     <div class="main-content">
-        <?php if($this->session->flashdata('success')): ?>
-            <div class="badge badge-success animate-up" style="margin-bottom: 20px; display: block; text-align: center; padding: 12px;">
-                <?php echo $this->session->flashdata('success'); ?>
-            </div>
-        <?php endif; ?>
+        <?php /* Success handled via dedicated Thank You screen in views */ ?>
         
         <?php if($this->session->flashdata('error')): ?>
             <div class="badge badge-error animate-up" style="margin-bottom: 20px; display: block; text-align: center; padding: 12px; background: rgba(239, 68, 68, 0.2); color: #f87171;">

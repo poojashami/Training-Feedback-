@@ -13,11 +13,7 @@ $hi = $CI->lang->language;
     </header>
 
     <form action="<?php echo site_url('feedbackv2/submit_calendar'); ?>" method="post" id="calendarForm">
-        <div style="display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 15px;">
-            <div class="form-group">
-                <label>Sl. No.</label>
-                <input type="text" name="sl_no" class="form-control" placeholder="e.g. 01">
-            </div>
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
             <div class="form-group">
                 <label>Name of the programme</label>
                 <input type="text" name="training_name" class="form-control" placeholder="Enter program name..." required>
@@ -86,7 +82,6 @@ $hi = $CI->lang->language;
         <table>
             <thead>
                 <tr>
-                    <th style="width: 40px;">#</th>
                     <th>Training Program Details</th>
                     <th>Duration & Venue</th>
                     <th style="text-align: center;">Action Links</th>
@@ -100,7 +95,6 @@ $hi = $CI->lang->language;
                 <?php else: ?>
                     <?php foreach ($recent_links as $row): ?>
                         <tr>
-                            <td><?php echo $row->sl_no; ?></td>
                             <td>
                                 <div style="font-weight: 700; color: var(--primary); font-size: 14px;"><?php echo $row->training_name; ?></div>
                                 <div style="font-size: 11px; color: var(--accent);">ID: <?php echo $row->program_id; ?> | Coordinator: <?php echo $row->coordinator; ?></div>
