@@ -5,7 +5,7 @@
 
 <div class="glass-card animate-up" style="margin-bottom: 30px;">
     <form method="get" action="<?php echo site_url('feedbackv2/reports'); ?>">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; align-items: end;">
+        <div class="form-row-responsive">
             <div class="form-group" style="margin-bottom: 0;">
                 <label>Program Name</label>
                 <select name="program_name" class="form-control select2-search" style="width: 100%;">
@@ -41,14 +41,14 @@
                 </select>
             </div>
             <div style="display: flex; gap: 8px;">
-                <button type="submit" class="btn-primary" style="margin-top: 0; width: 100px; padding: 7px 15px; font-size: 13px;">Filter</button>
+                <button type="submit" class="btn-primary" style="margin-top: 0; flex: 1; padding: 7px 15px; font-size: 13px;">Filter</button>
                 <a href="<?php echo site_url('feedbackv2/reports'); ?>" class="btn-primary" style="margin-top: 0; background: var(--text-muted); text-decoration: none; width: 40px; padding: 7px 0; font-size: 13px;">✕</a>
             </div>
         </div>
     </form>
 </div>
 
-<div class="stats-grid animate-up" style="margin-bottom: 30px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+<div class="stats-grid animate-up" style="margin-bottom: 30px;">
 
     <div class="stat-card" style="border-bottom: 3px solid var(--success);">
         <div class="stat-label">Overall Training Evaluation / प्रशिक्षण मूल्यांकन</div>
@@ -159,7 +159,11 @@
                             <div style="font-weight: 700; color: #ec4899;"><?php echo $f_score; ?> <span style="font-size: 11px; color: var(--text-muted);">/ 30</span></div>
                         </td>
                         <td>
-                            <a href="<?php echo site_url('feedbackv2/view_training/'.$row->id); ?>" style="text-decoration: none;"><div style="font-weight: 900; color: var(--success); font-size: 16px;"><?php echo $total; ?> <span style="font-size: 11px; color: var(--text-muted);">/ 100</span></div></a>
+                            <a href="<?php echo site_url('feedbackv2/view_training/'.$row->id); ?>" style="text-decoration: none;">
+                                <div style="font-weight: 900; color: var(--success); font-size: 16px;">
+                                    <?php echo $total; ?> <span style="font-size: 11px; color: var(--text-muted);">/ 100</span>
+                                </div>
+                            </a>
                         </td>
                     </tr>
                 <?php

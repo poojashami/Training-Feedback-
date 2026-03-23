@@ -23,10 +23,6 @@ $hi = $CI->lang->language;
     </div>
 <?php else: ?>
     <div class="glass-card animate-up" style="position: relative;">
-        <div style="position: absolute; top: 24px; right: 24px; text-align: right; z-index: 10;">
-            <div style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Date / दिनांक</div>
-            <div style="font-size: 16px; color: var(--accent); font-weight: 800;"><?php echo date('d M Y'); ?></div>
-        </div>
         <header>
             <h1 style="font-size: 24px;">गेल प्रशिक्षण संस्थान, नोएडा</h1>
             <h1 style="font-size: 24px;">GAIL TRAINING INSTITUTE</h1>
@@ -34,8 +30,13 @@ $hi = $CI->lang->language;
             <h2 style="font-size: 20px; color: var(--accent);">Training Evaluation Form</h2>
         </header>
 
+        <div class="form-header-date">
+            <div class="date-label">Date / दिनांक</div>
+            <div class="date-value"><?php echo date('d M Y'); ?></div>
+        </div>
+
         <form action="<?php echo site_url('feedbackv2/submit_training'); ?>" method="post">
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+            <div class="form-row-responsive">
                 <div class="form-group">
                     <label><?php echo $hi['prog_name']; ?> / <?php echo $en['prog_name']; ?></label>
                     <input type="text" name="prog_name" class="form-control" placeholder="Enter program name..." required value="<?php echo isset($cal) ? $cal->training_name : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?>>
@@ -46,7 +47,7 @@ $hi = $CI->lang->language;
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
+            <div class="form-row-responsive">
                 <div class="form-group">
                     <label>प्रारंभ दिनांक / From Date</label>
                     <input type="date" name="date_from" id="v2_date_from" class="form-control" required value="<?php echo isset($cal) ? $cal->start_date : ''; ?>" <?php echo isset($cal) ? 'readonly style="pointer-events: none;"' : ''; ?>>
@@ -61,7 +62,7 @@ $hi = $CI->lang->language;
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+            <div class="form-row-responsive">
                 <div class="form-group">
                     <label>Coordinator / समन्वयक</label>
                     <input type="text" name="coordinator" class="form-control" placeholder="Coordinator name..." value="<?php echo isset($cal) ? $cal->coordinator : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?>>
@@ -163,7 +164,7 @@ $hi = $CI->lang->language;
 
             <div style="margin-top: 20px;"></div>
 
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-top: 0px;">
+            <div class="form-row-responsive">
                 <div class="form-group">
                     <label><?php echo $hi['name']; ?> / <?php echo $en['name']; ?> :-</label>
                     <input type="text" name="participant_name" class="form-control" placeholder="Enter participant name..." required>

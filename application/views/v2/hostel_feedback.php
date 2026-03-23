@@ -23,10 +23,6 @@ $hi = $CI->lang->language;
     </div>
 <?php else: ?>
     <div class="glass-card animate-up" style="position: relative;">
-        <div style="position: absolute; top: 24px; right: 24px; text-align: right; z-index: 10;">
-            <div style="font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Date / दिनांक</div>
-            <div style="font-size: 16px; color: var(--accent); font-weight: 800;"><?php echo date('d M Y'); ?></div>
-        </div>
         <header>
             <h1 style="font-size: 24px;">हॉस्टल - गेल ट्रेनिंग इंस्टीट्यूट</h1>
             <h1 style="font-size: 24px;">HOSTEL - GAIL Training Institute</h1>
@@ -37,6 +33,11 @@ $hi = $CI->lang->language;
             <h2 style="font-size: 20px; color: var(--accent);"><?php echo $en['hostel_title']; ?></h2>
             <p style="font-size: 14px; margin-top: 5px;"><?php echo $hi['hostel_subtitle']; ?> / <?php echo $en['hostel_subtitle']; ?></p>
         </header>
+
+        <div class="form-header-date">
+            <div class="date-label">Date / दिनांक</div>
+            <div class="date-value"><?php echo date('d M Y'); ?></div>
+        </div>
 
         <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; margin-bottom: 30px; border-left: 4px solid var(--accent); font-size: 14px;">
             <p><strong><?php echo $hi['dear_colleague']; ?> / <?php echo $en['dear_colleague']; ?></strong></p>
@@ -50,7 +51,7 @@ $hi = $CI->lang->language;
                     <label>Training Program / प्रशिक्षण कार्यक्रम</label>
                     <input type="text" name="training_program" class="form-control" value="<?php echo isset($cal) ? $cal->training_name : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?> style="background: transparent; font-weight: 700; color: var(--accent);">
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                <div class="form-row-responsive">
                     <div class="form-group">
                         <label>Program ID</label>
                         <input type="text" name="program_id" class="form-control" value="<?php echo isset($cal) ? $cal->program_id : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?> style="background: transparent;">
@@ -70,7 +71,7 @@ $hi = $CI->lang->language;
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            <div class="form-row-responsive">
                 <div class="form-group">
                     <label>नाम / <?php echo $en['name']; ?></label>
                     <input type="text" name="name" class="form-control" placeholder="Enter name..." required>
