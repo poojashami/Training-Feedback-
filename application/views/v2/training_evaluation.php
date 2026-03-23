@@ -38,22 +38,22 @@ $hi = $CI->lang->language;
             <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
                 <div class="form-group">
                     <label><?php echo $hi['prog_name']; ?> / <?php echo $en['prog_name']; ?></label>
-                    <input type="text" name="prog_name" class="form-control" placeholder="Enter program name..." required value="<?php echo isset($cal) ? $cal->training_name : ''; ?>">
+                    <input type="text" name="prog_name" class="form-control" placeholder="Enter program name..." required value="<?php echo isset($cal) ? $cal->training_name : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?>>
                 </div>
                 <div class="form-group">
                     <label>Program ID / प्रोग्राम आईडी</label>
-                    <input type="text" name="program_id" class="form-control" placeholder="ID..." value="<?php echo isset($cal) ? $cal->program_id : ''; ?>">
+                    <input type="text" name="program_id" class="form-control" placeholder="ID..." value="<?php echo isset($cal) ? $cal->program_id : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?>>
                 </div>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
                 <div class="form-group">
                     <label>प्रारंभ दिनांक / From Date</label>
-                    <input type="date" name="date_from" id="v2_date_from" class="form-control" required value="<?php echo isset($cal) ? $cal->start_date : ''; ?>">
+                    <input type="date" name="date_from" id="v2_date_from" class="form-control" required value="<?php echo isset($cal) ? $cal->start_date : ''; ?>" <?php echo isset($cal) ? 'readonly style="pointer-events: none;"' : ''; ?>>
                 </div>
                 <div class="form-group">
                     <label>समाप्ति दिनांक / To Date</label>
-                    <input type="date" name="date_to" id="v2_date_to" class="form-control" required value="<?php echo isset($cal) ? $cal->end_date : ''; ?>">
+                    <input type="date" name="date_to" id="v2_date_to" class="form-control" required value="<?php echo isset($cal) ? $cal->end_date : ''; ?>" <?php echo isset($cal) ? 'readonly style="pointer-events: none;"' : ''; ?>>
                 </div>
                 <div class="form-group">
                     <label><?php echo $hi['duration']; ?> / <?php echo $en['duration']; ?></label>
@@ -64,22 +64,22 @@ $hi = $CI->lang->language;
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
                 <div class="form-group">
                     <label>Coordinator / समन्वयक</label>
-                    <input type="text" name="coordinator" class="form-control" placeholder="Coordinator name..." value="<?php echo isset($cal) ? $cal->coordinator : ''; ?>">
+                    <input type="text" name="coordinator" class="form-control" placeholder="Coordinator name..." value="<?php echo isset($cal) ? $cal->coordinator : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?>>
                 </div>
                 <div class="form-group">
                     <label><?php echo $hi['conducted_by']; ?> / <?php echo $en['conducted_by']; ?></label>
-                    <input type="text" name="conducted_by" class="form-control" placeholder="Instructor name..." value="<?php echo isset($cal) ? $cal->conducted_by : ''; ?>">
+                    <input type="text" name="conducted_by" class="form-control" placeholder="Instructor name..." value="<?php echo isset($cal) ? $cal->conducted_by : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?>>
                 </div>
                 <div class="form-group">
                     <label><?php echo $hi['organization']; ?> / <?php echo $en['organization']; ?></label>
-                    <input type="text" name="organization" class="form-control" placeholder="Organization name..." value="<?php echo isset($cal) ? $cal->organization : ''; ?>">
+                    <input type="text" name="organization" class="form-control" placeholder="Organization name..." value="<?php echo isset($cal) ? $cal->organization : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?>>
                 </div>
 
             </div>
 
             <div class="form-group">
                 <label>Location & Room / स्थान और कमरा</label>
-                <input type="text" name="location_room" class="form-control" placeholder="Location..." value="<?php echo isset($cal) ? $cal->location . ' (' . $cal->room_booked . ')' : ''; ?>">
+                <input type="text" name="location_room" class="form-control" placeholder="Location..." value="<?php echo isset($cal) ? $cal->location . ' (' . $cal->room_booked . ')' : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?>>
             </div>
 
             <h4 style="color: var(--accent); margin: 30px 0 15px; border-bottom: 1px solid var(--glass-border); padding-bottom: 8px;">
@@ -91,7 +91,7 @@ $hi = $CI->lang->language;
                     <thead>
                         <tr>
                             <th style="width: 50px;">#</th>
-                            <th>Parameters / मापदंड</th>
+                            <th class="text-left">Parameters / मापदंड</th>
                             <th style="width: 80px; text-align: center;">Max</th>
                             <th style="width: 120px; text-align: center;">Score</th>
                         </tr>
@@ -102,9 +102,9 @@ $hi = $CI->lang->language;
                         for ($i = 1; $i <= 5; $i++): ?>
                             <tr>
                                 <td><?php echo $i; ?></td>
-                                <td>
-                                    <div style="font-size: 13px; color: var(--primary);"><?php echo $hi['train_q' . $i]; ?></div>
-                                    <div style="font-size: 11px; color: var(--text-muted);"><?php echo $en['train_q' . $i]; ?></div>
+                                <td class="text-left">
+                                    <div style="font-size: 14px; color: var(--primary);"><?php echo $hi['train_q' . $i]; ?></div>
+                                    <div style="font-size: 12px; color: var(--text-muted);"><?php echo $en['train_q' . $i]; ?></div>
                                 </td>
                                 <td style="text-align: center; color: var(--text-muted);"><?php echo $pArr[$i - 1]; ?></td>
                                 <td><input type="number" step="0.1" name="t_q<?php echo $i; ?>" class="form-control prog-score" style="text-align: center;" min="0" max="<?php echo $pArr[$i - 1]; ?>" value="" required placeholder="0"></td>
@@ -112,7 +112,7 @@ $hi = $CI->lang->language;
                         <?php
                         endfor; ?>
                         <tr style="background: rgba(99, 102, 241, 0.08); font-weight: 700;">
-                            <td colspan="2" style="color: var(--primary);"><?php echo $hi['total']; ?> / Total</td>
+                            <td colspan="2" class="text-left" style="color: var(--primary);"><?php echo $hi['total']; ?> / Total</td>
                             <td style="text-align: center; color: var(--text-muted);">70</td>
                             <td><input type="number" step="0.1" id="v2_total_prog" class="form-control" style="text-align: center; background: transparent; border: none; color: var(--accent); font-weight: 800;" readonly value="0"></td>
                         </tr>
@@ -129,7 +129,7 @@ $hi = $CI->lang->language;
                     <thead>
                         <tr>
                             <th style="width: 50px;">#</th>
-                            <th>Faculty Criteria / संकाय मानदंड</th>
+                            <th class="text-left">Faculty Criteria / संकाय मानदंड</th>
                             <th style="width: 80px; text-align: center;">Max</th>
                             <th style="width: 120px; text-align: center;">Score</th>
                         </tr>
@@ -138,9 +138,9 @@ $hi = $CI->lang->language;
                         <?php for ($i = 1; $i <= 3; $i++): ?>
                             <tr>
                                 <td><?php echo $i; ?></td>
-                                <td>
-                                    <div style="font-size: 13px; color: var(--primary);"><?php echo $hi['faculty_q' . $i]; ?></div>
-                                    <div style="font-size: 11px; color: var(--text-muted);"><?php echo $en['faculty_q' . $i]; ?></div>
+                                <td class="text-left">
+                                    <div style="font-size: 14px; color: var(--primary);"><?php echo $hi['faculty_q' . $i]; ?></div>
+                                    <div style="font-size: 12px; color: var(--text-muted);"><?php echo $en['faculty_q' . $i]; ?></div>
                                 </td>
                                 <td style="text-align: center; color: var(--text-muted);">10</td>
                                 <td><input type="number" step="0.1" name="f_q<?php echo $i; ?>" class="form-control faculty-score" style="text-align: center;" min="0" max="10" value="" required placeholder="0"></td>
@@ -148,7 +148,7 @@ $hi = $CI->lang->language;
                         <?php
                         endfor; ?>
                         <tr style="background: rgba(236, 72, 153, 0.08); font-weight: 700;">
-                            <td colspan="2" style="color: var(--primary);"><?php echo $hi['total']; ?> / Total</td>
+                            <td colspan="2" class="text-left" style="color: var(--primary);"><?php echo $hi['total']; ?> / Total</td>
                             <td style="text-align: center; color: var(--text-muted);">30</td>
                             <td><input type="number" step="0.1" id="v2_total_faculty" class="form-control" style="text-align: center; background: transparent; border: none; color: var(--secondary); font-weight: 800;" readonly value="0"></td>
                         </tr>

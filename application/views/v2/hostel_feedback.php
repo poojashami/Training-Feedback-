@@ -48,24 +48,24 @@ $hi = $CI->lang->language;
             <div style="background: rgba(99, 102, 241, 0.03); padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 1px dashed var(--accent-glow);">
                 <div class="form-group">
                     <label>Training Program / प्रशिक्षण कार्यक्रम</label>
-                    <input type="text" name="training_program" class="form-control" readonly value="<?php echo isset($cal) ? $cal->training_name : ''; ?>" style="background: transparent; font-weight: 700; color: var(--accent);">
+                    <input type="text" name="training_program" class="form-control" value="<?php echo isset($cal) ? $cal->training_name : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?> style="background: transparent; font-weight: 700; color: var(--accent);">
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
                     <div class="form-group">
                         <label>Program ID</label>
-                        <input type="text" name="program_id" class="form-control" readonly value="<?php echo isset($cal) ? $cal->program_id : ''; ?>" style="background: transparent;">
+                        <input type="text" name="program_id" class="form-control" value="<?php echo isset($cal) ? $cal->program_id : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?> style="background: transparent;">
                     </div>
                     <div class="form-group">
                         <label>From Date</label>
-                        <input type="text" class="form-control" readonly value="<?php echo isset($cal) ? date('d M Y', strtotime($cal->start_date)) : ''; ?>" style="background: transparent;">
+                        <input type="text" class="form-control" value="<?php echo isset($cal) ? date('d M Y', strtotime($cal->start_date)) : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?> style="background: transparent;">
                     </div>
                     <div class="form-group">
                         <label>To Date</label>
-                        <input type="text" class="form-control" readonly value="<?php echo isset($cal) ? date('d M Y', strtotime($cal->end_date)) : ''; ?>" style="background: transparent;">
+                        <input type="text" class="form-control" value="<?php echo isset($cal) ? date('d M Y', strtotime($cal->end_date)) : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?> style="background: transparent;">
                     </div>
                     <div class="form-group">
                         <label>Duration</label>
-                        <input type="text" name="duration" class="form-control" readonly value="<?php echo isset($cal) ? $cal->duration . ' Days' : ''; ?>" style="background: transparent; font-weight: 700;">
+                        <input type="text" name="duration" class="form-control" value="<?php echo isset($cal) ? $cal->duration . ' Days' : ''; ?>" <?php echo isset($cal) ? 'readonly' : ''; ?> style="background: transparent; font-weight: 700;">
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@ $hi = $CI->lang->language;
                     <thead>
                         <tr>
                             <th style="width: 50px;">#</th>
-                            <th>Description / विवरण</th>
+                            <th class="text-left">Description / विवरण</th>
                             <th style="width: 120px; text-align: center;">Rating (1-5)</th>
                         </tr>
                     </thead>
@@ -98,16 +98,16 @@ $hi = $CI->lang->language;
                         <?php for ($i = 1; $i <= 7; $i++): ?>
                         <tr>
                             <td><?php echo $i; ?></td>
-                            <td>
-                                <div style="font-size: 13px; color: #fff;"><?php echo $hi['hostel_q' . $i]; ?></div>
-                                <div style="font-size: 11px; color: var(--text-muted);"><?php echo $en['hostel_q' . $i]; ?></div>
+                            <td class="text-left">
+                                <div style="font-size: 14px; color: #fff;"><?php echo $hi['hostel_q' . $i]; ?></div>
+                                <div style="font-size: 12px; color: var(--text-muted);"><?php echo $en['hostel_q' . $i]; ?></div>
                             </td>
                             <td><input type="number" step="0.1" name="q<?php echo $i; ?>" class="form-control" style="text-align: center;" min="1" max="5" value="" required placeholder="0"></td>
                         </tr>
                         <?php endfor; ?>
 
                         <tr>
-                            <td colspan="3" style="background: rgba(255,255,255,0.05); padding: 12px; font-weight: 700; text-align: center; color: var(--accent);">
+                            <td colspan="3" class="text-left" style="background: rgba(255,255,255,0.05); padding: 12px 15px; font-weight: 700; color: var(--accent);">
                                 <?php echo $hi['hostel_food_quality']; ?> / <?php echo $en['hostel_food_quality']; ?>
                             </td>
                         </tr>
@@ -115,9 +115,9 @@ $hi = $CI->lang->language;
                         <?php for ($i = 8; $i <= 10; $i++): ?>
                         <tr>
                             <td><?php echo $i; ?></td>
-                            <td>
-                                <div style="font-size: 13px; color: #fff;"><?php echo $hi['hostel_q' . $i]; ?></div>
-                                <div style="font-size: 11px; color: var(--text-muted);"><?php echo $en['hostel_q' . $i]; ?></div>
+                            <td class="text-left">
+                                <div style="font-size: 14px; color: #fff;"><?php echo $hi['hostel_q' . $i]; ?></div>
+                                <div style="font-size: 12px; color: var(--text-muted);"><?php echo $en['hostel_q' . $i]; ?></div>
                             </td>
                             <td><input type="number" step="0.1" name="q<?php echo $i; ?>" class="form-control" style="text-align: center;" min="1" max="5" value="" required placeholder="0"></td>
                         </tr>

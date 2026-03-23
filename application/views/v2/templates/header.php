@@ -33,8 +33,8 @@
             <div class="nav-menu">
                 <a href="<?php echo site_url('feedbackv2'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == '' || $this->uri->segment(2) == 'index') ? 'active' : ''; ?>">Training Calendar</a>
                 <a href="<?php echo site_url('feedbackv2/dashboard'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == 'dashboard') ? 'active' : ''; ?>">Dashboard</a>
-                <a href="<?php echo site_url('feedbackv2/hostel'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == 'hostel') ? 'active' : ''; ?>">Hostel</a>
                 <a href="<?php echo site_url('feedbackv2/training'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == 'training') ? 'active' : ''; ?>">Training</a>
+                <a href="<?php echo site_url('feedbackv2/hostel'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == 'hostel') ? 'active' : ''; ?>">Hostel</a>
                 <a href="<?php echo site_url('feedbackv2/reports'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == 'reports') ? 'active' : ''; ?>">Reports</a>
                 <a href="<?php echo site_url('feedback'); ?>" class="nav-item">Switch to V1</a>
             </div>
