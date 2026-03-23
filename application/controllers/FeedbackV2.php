@@ -269,7 +269,7 @@ class FeedbackV2 extends CI_Controller
         $this->form_validation->set_rules('name', 'Name', 'required|trim');
         $this->form_validation->set_rules('designation', 'Designation', 'required|trim');
         for ($i = 1; $i <= 10; $i++) {
-            $this->form_validation->set_rules('q' . $i, 'Question ' . $i, 'required|integer|greater_than_equal_to[1]|less_than_equal_to[5]');
+            $this->form_validation->set_rules('q' . $i, 'Question ' . $i, 'required|numeric|greater_than_equal_to[1]|less_than_equal_to[5]');
         }
 
         if ($this->form_validation->run() == FALSE) {
@@ -297,10 +297,10 @@ class FeedbackV2 extends CI_Controller
 
         $t_max = [20, 20, 15, 10, 5];
         for ($i = 1; $i <= 5; $i++) {
-            $this->form_validation->set_rules('t_q' . $i, 'Program Question ' . $i, 'required|integer|greater_than_equal_to[0]|less_than_equal_to[' . $t_max[$i - 1] . ']');
+            $this->form_validation->set_rules('t_q' . $i, 'Program Question ' . $i, 'required|numeric|greater_than_equal_to[0]|less_than_equal_to[' . $t_max[$i - 1] . ']');
         }
         for ($i = 1; $i <= 3; $i++) {
-            $this->form_validation->set_rules('f_q' . $i, 'Faculty Question ' . $i, 'required|integer|greater_than_equal_to[0]|less_than_equal_to[10]');
+            $this->form_validation->set_rules('f_q' . $i, 'Faculty Question ' . $i, 'required|numeric|greater_than_equal_to[0]|less_than_equal_to[10]');
         }
 
         if ($this->form_validation->run() == FALSE) {

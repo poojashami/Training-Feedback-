@@ -107,14 +107,14 @@ $hi = $CI->lang->language;
                                     <div style="font-size: 11px; color: var(--text-muted);"><?php echo $en['train_q' . $i]; ?></div>
                                 </td>
                                 <td style="text-align: center; color: var(--text-muted);"><?php echo $pArr[$i - 1]; ?></td>
-                                <td><input type="number" name="t_q<?php echo $i; ?>" class="form-control prog-score" style="text-align: center;" min="0" max="<?php echo $pArr[$i - 1]; ?>" value="" required placeholder="0"></td>
+                                <td><input type="number" step="0.1" name="t_q<?php echo $i; ?>" class="form-control prog-score" style="text-align: center;" min="0" max="<?php echo $pArr[$i - 1]; ?>" value="" required placeholder="0"></td>
                             </tr>
                         <?php
                         endfor; ?>
                         <tr style="background: rgba(99, 102, 241, 0.08); font-weight: 700;">
                             <td colspan="2" style="color: var(--primary);"><?php echo $hi['total']; ?> / Total</td>
                             <td style="text-align: center; color: var(--text-muted);">70</td>
-                            <td><input type="number" id="v2_total_prog" class="form-control" style="text-align: center; background: transparent; border: none; color: var(--accent); font-weight: 800;" readonly value="0"></td>
+                            <td><input type="number" step="0.1" id="v2_total_prog" class="form-control" style="text-align: center; background: transparent; border: none; color: var(--accent); font-weight: 800;" readonly value="0"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -143,14 +143,14 @@ $hi = $CI->lang->language;
                                     <div style="font-size: 11px; color: var(--text-muted);"><?php echo $en['faculty_q' . $i]; ?></div>
                                 </td>
                                 <td style="text-align: center; color: var(--text-muted);">10</td>
-                                <td><input type="number" name="f_q<?php echo $i; ?>" class="form-control faculty-score" style="text-align: center;" min="0" max="10" value="" required placeholder="0"></td>
+                                <td><input type="number" step="0.1" name="f_q<?php echo $i; ?>" class="form-control faculty-score" style="text-align: center;" min="0" max="10" value="" required placeholder="0"></td>
                             </tr>
                         <?php
                         endfor; ?>
                         <tr style="background: rgba(236, 72, 153, 0.08); font-weight: 700;">
                             <td colspan="2" style="color: var(--primary);"><?php echo $hi['total']; ?> / Total</td>
                             <td style="text-align: center; color: var(--text-muted);">30</td>
-                            <td><input type="number" id="v2_total_faculty" class="form-control" style="text-align: center; background: transparent; border: none; color: var(--secondary); font-weight: 800;" readonly value="0"></td>
+                            <td><input type="number" step="0.1" id="v2_total_faculty" class="form-control" style="text-align: center; background: transparent; border: none; color: var(--secondary); font-weight: 800;" readonly value="0"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -185,30 +185,30 @@ $hi = $CI->lang->language;
         function updateAllScores() {
             let progTotal = 0;
             document.querySelectorAll('.prog-score').forEach(input => {
-                let max = parseInt(input.getAttribute('max')) || 100;
-                let val = parseInt(input.value);
+                let max = parseFloat(input.getAttribute('max')) || 100;
+                let val = parseFloat(input.value);
                 if (val > max) {
                     input.value = max;
                     showToast("Max score for this field is " + max);
                 } else if (val < 0 && input.value !== "") {
                     input.value = 0;
                 }
-                progTotal += parseInt(input.value) || 0;
+                progTotal += parseFloat(input.value) || 0;
             });
-            document.getElementById('v2_total_prog').value = progTotal;
+            document.getElementById('v2_total_prog').value = progTotal.toFixed(1);
 
             let facultyTotal = 0;
             document.querySelectorAll('.faculty-score').forEach(input => {
-                let val = parseInt(input.value);
+                let val = parseFloat(input.value);
                 if (val > 10) {
                     input.value = 10;
                     showToast("Max score for faculty is 10");
                 } else if (val < 0 && input.value !== "") {
                     input.value = 0;
                 }
-                facultyTotal += parseInt(input.value) || 0;
+                facultyTotal += parseFloat(input.value) || 0;
             });
-            document.getElementById('v2_total_faculty').value = facultyTotal;
+            document.getElementById('v2_total_faculty').value = facultyTotal.toFixed(1);
         }
 
         // Attach unified listener to all score inputs

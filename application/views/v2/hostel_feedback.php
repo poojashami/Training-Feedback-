@@ -102,7 +102,7 @@ $hi = $CI->lang->language;
                                 <div style="font-size: 13px; color: #fff;"><?php echo $hi['hostel_q' . $i]; ?></div>
                                 <div style="font-size: 11px; color: var(--text-muted);"><?php echo $en['hostel_q' . $i]; ?></div>
                             </td>
-                            <td><input type="number" name="q<?php echo $i; ?>" class="form-control" style="text-align: center;" min="1" max="5" value="" required placeholder="0"></td>
+                            <td><input type="number" step="0.1" name="q<?php echo $i; ?>" class="form-control" style="text-align: center;" min="1" max="5" value="" required placeholder="0"></td>
                         </tr>
                         <?php endfor; ?>
 
@@ -119,7 +119,7 @@ $hi = $CI->lang->language;
                                 <div style="font-size: 13px; color: #fff;"><?php echo $hi['hostel_q' . $i]; ?></div>
                                 <div style="font-size: 11px; color: var(--text-muted);"><?php echo $en['hostel_q' . $i]; ?></div>
                             </td>
-                            <td><input type="number" name="q<?php echo $i; ?>" class="form-control" style="text-align: center;" min="1" max="5" value="" required placeholder="0"></td>
+                            <td><input type="number" step="0.1" name="q<?php echo $i; ?>" class="form-control" style="text-align: center;" min="1" max="5" value="" required placeholder="0"></td>
                         </tr>
                         <?php endfor; ?>
                     </tbody>
@@ -145,7 +145,7 @@ $hi = $CI->lang->language;
         // Validation for rating fields (1-5)
         document.querySelectorAll('input[type="number"]').forEach(input => {
             input.addEventListener('input', function() {
-                let val = parseInt(this.value);
+                let val = parseFloat(this.value);
                 if (val > 5) {
                     this.value = 5;
                     showToast("Maximum rating is 5 / अधिकतम रेटिंग 5 है");
