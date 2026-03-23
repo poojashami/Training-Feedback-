@@ -1,5 +1,5 @@
 <header class="animate-up">
-    <h1>Project Dashboard <sup>V2</sup></h1>
+    <h1>Project Dashboard </h1>
     <h2>Premium Overview of Training & Hostel Feedback System</h2>
 </header>
 
@@ -34,25 +34,25 @@
 </h3>
 
 <div class="stats-grid animate-up" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-    <div class="stat-card" style="border-bottom: 3px solid var(--accent);">
-        <div class="stat-label">Hostel Overall Avg / कुल छात्रावास औसत</div>
-        <div class="stat-value" style="color: var(--accent);"><?php echo number_format($hostel_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/5</span></div>
-        <div class="stat-trend">General residential rating</div>
-    </div>
     <div class="stat-card" style="border-bottom: 3px solid var(--success);">
-        <div class="stat-label">Training Overall Score / प्रशिक्षण स्कोर</div>
+        <div class="stat-label">Overall Training Evaluation / प्रशिक्षण मूल्यांकन</div>
         <div class="stat-value" style="color: var(--success);"><?php echo number_format($train_total_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/100</span></div>
         <div class="stat-trend">Combined program assessment</div>
     </div>
     <div class="stat-card" style="border-bottom: 3px solid #6366f1;">
-        <div class="stat-label">Programme Quality / कार्यक्रम गुणवत्ता</div>
+        <div class="stat-label">Overall Programme / कार्यक्रम रेटिंग</div>
         <div class="stat-value" style="color: #6366f1; font-size: 28px;"><?php echo number_format($prog_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/70</span></div>
         <div class="stat-trend">Section I Metrics</div>
     </div>
     <div class="stat-card" style="border-bottom: 3px solid #ec4899;">
-        <div class="stat-label">Faculty Excellence / संकाय उत्कृष्टता</div>
+        <div class="stat-label">Trainers of Faculty / संकाय रेटिंग</div>
         <div class="stat-value" style="color: #ec4899; font-size: 28px;"><?php echo number_format($fac_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/30</span></div>
         <div class="stat-trend">Section II Metrics</div>
+    </div>
+    <div class="stat-card" style="border-bottom: 3px solid var(--accent);">
+        <div class="stat-label">Hostel / हॉस्टल रेटिंग</div>
+        <div class="stat-value" style="color: var(--accent);"><?php echo number_format($hostel_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/5</span></div>
+        <div class="stat-trend">General residential rating</div>
     </div>
 </div>
 
@@ -68,5 +68,3 @@
         <div class="badge badge-success" style="margin-top: 12px; display: inline-block;">ANALYTICS READY</div>
     </a>
 </div>
-
-

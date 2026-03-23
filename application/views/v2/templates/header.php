@@ -28,7 +28,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="<?php echo site_url('feedbackv2'); ?>" class="nav-brand">
-                <i>G</i> GTI Portal <sup>V2</sup>
+                <i>G</i> GTI Portal 
             </a>
             <div class="nav-menu">
                 <a href="<?php echo site_url('feedbackv2'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == '' || $this->uri->segment(2) == 'index') ? 'active' : ''; ?>">Training Calendar</a>
