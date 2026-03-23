@@ -139,26 +139,39 @@ class FeedbackV2 extends CI_Controller
         $program_name = $this->input->get('program_name');
         $date_from = $this->input->get('date_from');
         $date_to = $this->input->get('date_to');
-        $coordinator = $this->input->get('coordinator');
+        $coordinator = trim($this->input->get('coordinator'));
 
         // Fetch unique program names for the filter dropdown
         $p1 = $this->db->select('training_name as name')->from('training_calendar')->get()->result_array();
         $p2 = $this->db->select('training_program as name')->from('hostel_feedback')->where('training_program is not null')->group_by('training_program')->get()->result_array();
         $p3 = $this->db->select('prog_name as name')->from('training_evaluation')->where('prog_name is not null')->group_by('prog_name')->get()->result_array();
 
-        $all_names = array_unique(array_merge(
+        $all_names = array_unique(array_map('trim', array_merge(
             array_column($p1, 'name'),
             array_column($p2, 'name'),
             array_column($p3, 'name')
-        ));
+        )));
         sort($all_names);
         $data['available_programs'] = array_filter($all_names);
+
+        // Fetch unique coordinators for the filter dropdown
+        $c1 = $this->db->select('coordinator')->from('training_calendar')->where('coordinator is not null')->group_by('coordinator')->get()->result_array();
+        $c2 = $this->db->select('coordinator')->from('training_evaluation')->where('coordinator is not null')->group_by('coordinator')->get()->result_array();
+        $c3 = $this->db->select('conducted_by as coordinator')->from('training_evaluation')->where('conducted_by is not null')->group_by('conducted_by')->get()->result_array();
+
+        $all_coords = array_unique(array_map('trim', array_merge(
+            array_column($c1, 'coordinator'),
+            array_column($c2, 'coordinator'),
+            array_column($c3, 'coordinator')
+        )));
+        sort($all_coords);
+        $data['available_coordinators'] = array_filter($all_coords);
 
         // --- Hostel Feedback Query ---
         $this->db->select('*');
         $this->db->from('hostel_feedback');
         if (!empty($program_name)) {
-            $this->db->like('training_program', $program_name);
+            $this->db->where('training_program', $program_name);
         }
         if (!empty($date_from)) {
             $this->db->where('date >=', $date_from);
@@ -190,7 +203,7 @@ class FeedbackV2 extends CI_Controller
         $this->db->select('*');
         $this->db->from('training_evaluation');
         if (!empty($program_name)) {
-            $this->db->like('prog_name', $program_name);
+            $this->db->where('prog_name', $program_name);
         }
         if (!empty($date_from)) {
             $this->db->where('date_from >=', $date_from);

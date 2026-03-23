@@ -13,7 +13,7 @@
             background-color: #f8fafc;
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            height: 40px;
+            height: 34px;
             display: flex;
             align-items: center;
         }

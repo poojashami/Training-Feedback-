@@ -29,11 +29,20 @@
             </div>
             <div class="form-group" style="margin-bottom: 0;">
                 <label>Coordinator</label>
-                <input type="text" name="coordinator" class="form-control" placeholder="Name..." value="<?php echo isset($filters['coordinator']) ? $filters['coordinator'] : ''; ?>">
+                <select name="coordinator" class="form-control select2-search" style="width: 100%;">
+                    <option value="">All</option>
+                    <?php if (!empty($available_coordinators)): ?>
+                        <?php foreach ($available_coordinators as $coord): ?>
+                            <option value="<?php echo htmlspecialchars($coord); ?>" <?php echo (isset($filters['coordinator']) && $filters['coordinator'] == $coord) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($coord); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
             </div>
             <div style="display: flex; gap: 8px;">
-                <button type="submit" class="btn-primary" style="margin-top: 0; flex: 2;">Filter</button>
-                <a href="<?php echo site_url('feedbackv2/reports'); ?>" class="btn-primary" style="margin-top: 0; background: var(--text-muted); text-decoration: none; flex: 1;">✕</a>
+                <button type="submit" class="btn-primary" style="margin-top: 0; width: 100px; padding: 7px 15px; font-size: 13px;">Filter</button>
+                <a href="<?php echo site_url('feedbackv2/reports'); ?>" class="btn-primary" style="margin-top: 0; background: var(--text-muted); text-decoration: none; width: 40px; padding: 7px 0; font-size: 13px;">✕</a>
             </div>
         </div>
     </form>
@@ -57,7 +66,7 @@
         <div class="stat-trend">Rating of Trainer</div>
     </div>
     <div class="stat-card" style="border-bottom: 3px solid var(--accent);">
-        <div class="stat-label">Hoste / हॉस्टल रेटिंग</div>
+        <div class="stat-label">Hostel / हॉस्टल रेटिंग</div>
         <div class="stat-value" style="color: var(--accent);"><?php echo number_format($hostel_overall_avg, 1); ?><span style="font-size: 14px; color: var(--text-muted);">/5</span></div>
         <div class="stat-trend">Based on <?php echo count($recent_hostel); ?> entries</div>
     </div>
@@ -168,6 +177,8 @@
 
 <script>
     $(document).ready(function() {
-        $('.select2-search').select2();
+        $('.select2-search').select2().on('change', function() {
+            $(this).closest('form').submit();
+        });
     });
 </script>

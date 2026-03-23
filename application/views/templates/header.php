@@ -12,8 +12,8 @@
         .select2-container--default .select2-selection--single {
             border: 1px solid #ced4da;
             border-radius: 4px;
-            height: 38px;
-            line-height: 38px;
+            height: 34px;
+            line-height: 34px;
         }
     </style>
 </head>
