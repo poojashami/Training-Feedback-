@@ -36,7 +36,6 @@
                 <a href="<?php echo site_url('feedbackv2/training'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == 'training') ? 'active' : ''; ?>">Training</a>
                 <a href="<?php echo site_url('feedbackv2/hostel'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == 'hostel') ? 'active' : ''; ?>">Hostel</a>
                 <a href="<?php echo site_url('feedbackv2/reports'); ?>" class="nav-item <?php echo ($this->uri->segment(2) == 'reports') ? 'active' : ''; ?>">Reports</a>
-                <a href="<?php echo site_url('feedback'); ?>" class="nav-item">Switch to V1</a>
             </div>
         </div>
     </nav>

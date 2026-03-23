@@ -81,8 +81,8 @@
         <table>
             <thead>
                 <tr>
-                    <th>Program / ID</th>
-                    <th>Name / ID No</th>
+                    <th class="text-left">Program / ID</th>
+                    <th class="text-left">Name / ID No</th>
                     <th>Avg Rating</th>
                     <th>Date</th>
                 </tr>
@@ -92,11 +92,11 @@
                     $avg = ($row->q1 + $row->q2 + $row->q3 + $row->q4 + $row->q5 + $row->q6 + $row->q7 + $row->q8 + $row->q9 + $row->q10) / 10;
                 ?>
                     <tr>
-                        <td>
+                        <td class="text-left">
                             <div style="color: var(--accent); font-weight: 600;"><?php echo ($row->training_program) ? $row->training_program : 'N/A'; ?></div>
                             <div style="font-size: 11px; color: var(--text-muted);">ID: <?php echo $row->program_id; ?></div>
                         </td>
-                        <td>
+                        <td class="text-left">
                             <div style="color: var(--primary); font-weight: 600;"><?php echo $row->name; ?></div>
                             <div style="font-size: 11px; color: var(--text-muted);"><?php echo $row->id_no; ?></div>
                         </td>
@@ -125,9 +125,9 @@
         <table>
             <thead>
                 <tr>
-                    <th>Training Program</th>
-                    <th>Instructor / Coord.</th>
-                    <th>Participant</th>
+                    <th class="text-left">Training Program</th>
+                    <th class="text-left">Instructor / Coord.</th>
+                    <th class="text-left">Participant</th>
                     <th>Prog. Rating (70)</th>
                     <th>Faculty Rating (30)</th>
                     <th>Total (100)</th>
@@ -140,15 +140,15 @@
                     $total = $p_score + $f_score;
                 ?>
                     <tr>
-                        <td>
+                        <td class="text-left">
                             <div style="color: var(--primary); font-weight: 700;"><?php echo ($row->prog_name) ? $row->prog_name : 'N/A'; ?></div>
                             <div style="font-size: 11px; color: var(--text-muted);">ID: <?php echo $row->program_id; ?></div>
                         </td>
-                        <td>
+                        <td class="text-left">
                             <div style="color: var(--primary); font-weight: 500; font-size: 13px;"><?php echo $row->conducted_by; ?></div>
                             <div style="font-size: 11px; color: var(--text-muted);">Coord: <?php echo $row->coordinator; ?></div>
                         </td>
-                        <td>
+                        <td class="text-left">
                             <div style="color: var(--primary); font-weight: 600;"><?php echo $row->participant_name; ?></div>
                             <div style="font-size: 11px; color: var(--text-muted);">CPF: <?php echo $row->cpf_no; ?></div>
                         </td>
