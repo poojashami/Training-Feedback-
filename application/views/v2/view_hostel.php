@@ -33,14 +33,48 @@ $hi = $CI->lang->language;
             <label>Training Program / प्रशिक्षण कार्यक्रम</label>
             <input type="text" class="form-control" readonly value="<?php echo $feedback->training_program; ?>" style="background: transparent; font-weight: 700; color: var(--accent);">
         </div>
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
             <div class="form-group">
                 <label>Program ID</label>
                 <input type="text" class="form-control" readonly value="<?php echo $feedback->program_id; ?>" style="background: transparent;">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="grid-column: span 2;">
                 <label>Submitted By</label>
-                <input type="text" class="form-control" readonly value="<?php echo $feedback->name; ?> (<?php echo $feedback->id_no; ?>)" style="background: transparent; font-weight: 700;">
+                <input type="text" class="form-control" readonly value="<?php echo $feedback->name; ?> (ID: <?php echo $feedback->id_no; ?>)" style="background: transparent; font-weight: 700;">
+            </div>
+            <div class="form-group">
+                <label>Designation</label>
+                <input type="text" class="form-control" readonly value="<?php echo $feedback->designation; ?>" style="background: transparent;">
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 10px; border-top: 1px solid var(--glass-border); padding-top: 15px;">
+            <div class="form-group">
+                <label>Dates</label>
+                <input type="text" class="form-control" readonly value="<?php echo date('d M', strtotime($feedback->start_date)) . ' - ' . date('d M Y', strtotime($feedback->end_date)); ?>" style="background: transparent;">
+            </div>
+            <div class="form-group">
+                <label>Duration</label>
+                <input type="text" class="form-control" readonly value="<?php echo $feedback->duration; ?>" style="background: transparent;">
+            </div>
+            <div class="form-group">
+                <label>Coordinator</label>
+                <input type="text" class="form-control" readonly value="<?php echo $feedback->coordinator; ?>" style="background: transparent;">
+            </div>
+            <div class="form-group">
+                <label>Instructor</label>
+                <input type="text" class="form-control" readonly value="<?php echo $feedback->conducted_by; ?>" style="background: transparent;">
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+            <div class="form-group">
+                <label>Venue (Location & Room)</label>
+                <input type="text" class="form-control" readonly value="<?php echo $feedback->location . ' (' . $feedback->room_booked . ')'; ?>" style="background: transparent;">
+            </div>
+            <div class="form-group">
+                <label>Organization</label>
+                <input type="text" class="form-control" readonly value="<?php echo $feedback->organization; ?>" style="background: transparent;">
             </div>
         </div>
     </div>

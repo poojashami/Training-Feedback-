@@ -82,26 +82,36 @@ $hi = $CI->lang->language;
         <table>
             <thead>
                 <tr>
-                    <th>Training Program Details</th>
-                    <th>Duration & Venue</th>
+                    <th class="text-left">Training Program</th>
+                    <th class="text-left">Dates & Duration</th>
+                    <th class="text-left">Personnel</th>
+                    <th class="text-left">Venue & Org.</th>
                     <th style="text-align: center;">Action Links</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (empty($recent_links)): ?>
                     <tr>
-                        <td colspan="4" style="text-align: center; padding: 40px; color: var(--text-muted);">No programs initialized yet. Use the form above to start.</td>
+                        <td colspan="5" style="text-align: center; padding: 40px; color: var(--text-muted);">No programs initialized yet. Use the form above to start.</td>
                     </tr>
                 <?php else: ?>
                     <?php foreach ($recent_links as $row): ?>
                         <tr>
-                            <td>
+                            <td class="text-left">
                                 <div style="font-weight: 700; color: var(--primary); font-size: 14px;"><?php echo $row->training_name; ?></div>
-                                <div style="font-size: 11px; color: var(--accent);">ID: <?php echo $row->program_id; ?> | Coordinator: <?php echo $row->coordinator; ?></div>
+                                <div style="font-size: 11px; color: var(--accent);">ID: <?php echo $row->program_id; ?></div>
                             </td>
-                            <td>
-                                <div style="font-size: 13px;"><?php echo date('d M', strtotime($row->start_date)); ?> - <?php echo date('d M Y', strtotime($row->end_date)); ?></div>
-                                <div style="font-size: 11px; color: var(--text-muted);"><?php echo $row->location; ?> (<?php echo $row->room_booked; ?>)</div>
+                            <td class="text-left">
+                                <div style="font-size: 13px; font-weight: 700; color: var(--primary);"><?php echo date('d M', strtotime($row->start_date)); ?> - <?php echo date('d M Y', strtotime($row->end_date)); ?></div>
+                                <div style="font-size: 11px; color: var(--text-muted);">Duration: <?php echo $row->duration; ?> Days</div>
+                            </td>
+                            <td class="text-left">
+                                <div style="font-size: 13px; color: var(--primary); font-weight: 700;">Instructor: <?php echo $row->conducted_by; ?></div>
+                                <div style="font-size: 11px; color: var(--accent);">Coord: <?php echo $row->coordinator; ?></div>
+                            </td>
+                            <td class="text-left">
+                                <div style="font-size: 13px; color: var(--primary); font-weight: 600;"><?php echo $row->location; ?> (<?php echo $row->room_booked; ?>)</div>
+                                <div style="font-size: 11px; color: var(--text-muted);">Org: <?php echo $row->organization; ?></div>
                             </td>
                             <td style="text-align: center; padding: 10px;">
                                 <div style="display: flex; flex-direction: column; gap: 5px;">
